@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="testEvent" xmlns="http://jbpm.org/4.4/jpdl">
+
+	<on event="start">  
+        <event-listener class="cn.gov.shunde.sdcs.action.process.impl.BaseNodeHandler">  
+        	<field name="state">  
+                <string value="process start..."/>  
+            </field>  
+            <field name="eventName">  
+                <string value="start"/>  
+            </field>  
+        </event-listener>  
+    </on> 
+    
+    <on event="end">  
+        <event-listener class="cn.gov.shunde.sdcs.action.process.impl.BaseNodeHandler">  
+        	<field name="state">  
+                <string value="process end..."/>  
+            </field>  
+            <field name="eventName">  
+               		 <string value="end"/>  
+            	</field>  
+        </event-listener>  
+    </on> 
+
+   <start g="502,54,48,48" name="start1">
+      <transition g="-52,-22" name="to task1" to="taskxxx"/>
+   </start>
+   <task g="484,117,92,52" name="taskxxx">
+   
+   	  <on event="start">  
+        <event-listener class="cn.gov.shunde.sdcs.action.process.impl.BaseNodeHandler">  
+        	<field name="state">  
+                <string value="node task1 start..."/>  
+            </field>  
+             <field name="eventName">  
+                <string value="start"/>  
+            </field>
+        </event-listener>  
+    </on> 
+    
+    <on event="end">  
+        <event-listener class="cn.gov.shunde.sdcs.action.process.impl.BaseNodeHandler">  
+        	<field name="state">  
+                <string value="node task1 end..."/>  
+            </field>  
+            <field name="eventName">  
+               		 <string value="end"/>  
+            	</field>
+        </event-listener>  
+    </on> 
+    
+      <transition g="-55,-6" name="to task2" to="task2"/>
+   </task>
+   <task g="486,188,92,52" name="task2">
+   	   <on event="start">  
+	        <event-listener class="cn.gov.shunde.sdcs.action.process.impl.BaseNodeHandler">  
+	        	<field name="state">  
+	                <string value="node task2 start..."/>  
+	            </field>  
+	             <field name="eventName">  
+                <string value="start"/>  
+            </field>
+            
+	        </event-listener>  
+	    </on> 
+	    
+	    <on event="end">  
+	        <event-listener class="cn.gov.shunde.sdcs.action.process.impl.BaseNodeHandler">  
+	        	<field name="state">  
+	                <string value="node task2 end..."/>  
+	            </field>  
+	            <field name="eventName">  
+               		 <string value="end"/>  
+            	</field>
+	        </event-listener>  
+	    </on> 
+      <transition g="-56,-10" name="to task3" to="task3"/>
+   </task>
+   <task g="489,257,92,52" name="task3">
+   	   <on event="start">  
+	        <event-listener class="cn.gov.shunde.sdcs.action.process.impl.BaseNodeHandler">  
+	        	<field name="state">  
+	                <string value="node task3 start..."/>  
+	            </field>  
+	             <field name="eventName">  
+                <string value="start"/>  
+            </field>
+	        </event-listener>  
+	    </on> 
+	    
+	    <on event="end">  
+	        <event-listener class="cn.gov.shunde.sdcs.action.process.impl.BaseNodeHandler">  
+	        	<field name="state">  
+	                <string value="node task3 end..."/>  
+	            </field>  
+	             <field name="eventName">  
+               		 <string value="end"/>  
+            	</field>
+	        </event-listener>  
+	    </on> 
+      <transition g="-50,-22" name="to end1" to="end1"/>
+   </task>
+   <end g="510,329,48,48" name="end1"/>
+   <java g="93,312,92,52" name="java1"/>
+</process>

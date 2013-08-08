@@ -1,0 +1,145 @@
+
+.sprite {
+	background: url(../images/split.gif) no-repeat right center;
+}
+
+a:link {color:#333; text-decoration:none;}
+a:visited {color:#333; text-decoration:none;}
+a:hover {text-decoration:none;}
+
+#menu{float:left;width:90%;}    
+#button{float:right;background-image: url('../images/nav_bg.gif');width:10%;line-height:24px;} 
+ 
+#wrap-nav {height: 35px;background-image: url('../images/nav_bg.gif');}    
+#wrap-nav .muen_box {overflow: visible; z-index: 9999;}  
+#wrap-nav .menu {z-index:99999;}
+#wrap-nav .menu li {
+	position: relative;
+	float: left;
+	padding: 0 8px 0 5px; 
+	display: inline; 
+	font-size: 14px;  
+	z-index:99999; 
+}
+
+#wrap-nav .menu li h3 {font-weight: normal; display: inline-block; float: left;z-index:99999;}
+#wrap-nav .menu li a.depth1 {margin-top: 5px; display: inline-block; color: #15428b;}
+#wrap-nav .menu li a.selected,
+#wrap-nav .menu li a.navhover,
+#wrap-nav .menu li a.depth1:hover {color: #416aa3; background: url(nav_hover2.gif) no-repeat left top;}
+#wrap-nav .menu li a.navhover, #wrap-nav .menu li a.depth1:hover {background-color:#fff;}
+#wrap-nav .menu li a.depth1 span {height: 30px; line-height: 25px; margin: 0 0 0 6px; padding: 0 4px 0 0; display: inline-block;}
+#wrap-nav .menu li a.selected span,
+#wrap-nav .menu li a.navhover span, 
+#wrap-nav .menu li a.depth1:hover span {cursor: pointer; background: url(nav_hover2.gif) no-repeat right top;}
+#wrap-nav .menu li a.navhover span, #wrap-nav .menu li a.depth1:hover span {background-color: #fff}
+
+#wrap-nav .menu li.overlay {
+	position: relative;	left: -4px; 
+	width: 8px; height: 28px;
+	padding: 0;	margin: 0; background: #c60c0d;
+}
+
+.parent {
+	width:760;
+	border: none;
+	position: absolute;
+	top:35px; 
+	left:3px; 
+	border-top: 0;
+	line-height: normal;
+	z-index: 9999; 
+}
+
+.children{
+	display: none;
+	position: absolute;
+	background: #f4f4f4;
+	border: 2px solid #8db2e3;
+	border-top: 0;
+	line-height: normal;
+	z-index: 9999;   
+}  
+  
+.children ul {
+	float:left;
+	padding-top:5px ;
+	display: inline-block;   
+}
+
+.children ul li {
+	width: 180px;
+	padding: 1px;
+	font-size: 12px;
+	margin-bottom:5px;
+	clear:both; 
+}
+   
+.children li.noborder {border: none;}
+
+.children ul li h3 {display: block; width: 100%;}
+
+.children ul li a {
+	width: 100%;
+	height: 20px;
+	overflow: hidden;
+	padding: 3px 0;
+	display: block;
+	color: #000;
+	font-siz:14px;
+	text-indent: 30px;
+	line-height:18px;
+}
+
+.children ul li a:hover {color:red;text-decoration: underline;}
+.children ul li.count {clear: both;}
+.children ul li.count div {width:100%; margin:0px; padding: 3px 0;color: #000;text-indent: 30px; }
+.children ul li.count div strong{font-weight: bold;}
+
+.spiltor {
+	display:block;
+	font-size:1px;
+	line-height:1px;
+	margin: 2px 3px;
+	border-bottom:1px solid;
+    overflow:hidden;
+}
+
+.dock {
+	position: relative; 
+	height: 35px;
+	line-height:35px;
+	text-align: right;
+	margin-right:20px;; 
+	width: 100% ;   
+}
+.dock-container { 
+	position: absolute;
+	height: 35px; 
+	padding-left: 20px;
+}
+a.dock-item {
+	display: block;
+	position: absolute;
+	top: 0px; 
+	margin-top:0px;
+	text-align: center;
+	text-decoration: none; 
+}
+
+.dock-item img {
+	border: none; 
+	margin: 3px 10px 0px; 
+	width: 100%; 
+}
+.dock-item span {
+	display: none; 
+	padding-left: 5px;
+	margin-top:0px;
+	color: black; 
+	font-family: "宋体" ;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+

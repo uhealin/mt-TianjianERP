@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process key="sealApplyFlow" name="sealApplyFlow" xmlns="http://jbpm.org/4.4/jpdl">
+    
+   <end g="479,734,48,48" name="end1"/>
+   <task g="450,115,92,52" name="公章领用发起">
+      <transition to="exclusive1"/>
+   </task>
+   <decision g="471,211,48,48" name="exclusive1" expr="#{judgeAudit}">
+      <transition g="243,235:-88,-8" name="分所盖总所印章" to="分所负责人审批"/>
+      <transition g="8,-14" name="业务部门使用公章" to="合伙人审批"/>
+      <transition g="754,237:4,7" name="公共部门使用公章" to="董办审批"/>
+   </decision>
+   <task g="172,325,143,52" name="分所负责人审批">
+  		<assignment-handler class="com.matech.audit.service.seal.SealAssign">
+		  <field name="role">
+	  	   	 <string value="72,73"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="总部归属业务部门审批"/>
+   </task>
+   <task g="163,439,156,52" name="总部归属业务部门审批">
+        <assignment-handler class="com.matech.audit.service.seal.SealAssign">
+		  <field name="role">
+	  	   	 <string value="72,73"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="总部执行合伙人或首席合伙人审批"/>
+   </task>
+   <task g="136,526,208,52" name="总部执行合伙人或首席合伙人审批">
+        <assignment-handler class="com.matech.audit.service.seal.SealAssign">
+		  <field name="role">
+	  	   	 <string value="72,73"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition g="240,655:" to="行政使用"/>
+   </task>
+   <task g="693,516,127,52" name="首席合伙人审批">
+        <assignment-handler class="com.matech.audit.service.seal.SealAssign">
+		  <field name="role">
+	  	   	 <string value="72,73"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition g="760,645:" to="行政使用"/>
+   </task>
+   <task g="434,326,124,52" name="合伙人审批">
+       <assignment-handler class="com.matech.audit.service.seal.SealAssign">
+		  <field name="role">
+	  	   	 <string value="72,73"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="主管合伙人审批"/>
+   </task>
+   <task g="430,440,128,52" name="主管合伙人审批">
+        <assignment-handler class="com.matech.audit.service.seal.SealAssign">
+		  <field name="role">
+	  	   	 <string value="72,73"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="行政使用"/>
+   </task>
+   <task g="687,427,132,52" name="执行合伙人审批">
+        <assignment-handler class="com.matech.audit.service.seal.SealAssign">
+		  <field name="role">
+	  	   	 <string value="72,73"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="首席合伙人审批"/>
+   </task>
+   <task g="706,317,92,52" name="董办审批">
+        <assignment-handler class="com.matech.audit.service.seal.SealAssign">
+		  <field name="role">
+	  	   	 <string value="72,73"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="执行合伙人审批"/>
+   </task>
+   <task g="453,626,92,52" name="行政使用">
+        <assignment-handler class="com.matech.audit.service.seal.SealAssign">
+		  <field name="role">
+	  	   	 <string value="72,73"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="end1"/>
+   </task>
+   <start g="469,28,48,48" name="start1">
+      <transition to="公章领用发起"/>
+   </start>
+</process>

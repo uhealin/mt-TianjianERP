@@ -1,0 +1,120 @@
+.jpdlcanvas {
+    font:normal 14px tahoma,arial,helvetica,sans-serif !important;
+    background-color: white;
+    border: 1px solid silver; 
+    position: absolute;
+    left: 200px;
+    top: 0px;
+    width: 200px;
+    height: 500px;  
+    z-index: 1000;
+    overflow: auto;
+}
+
+.jpdlpalette {
+    font:normal 14px tahoma,arial,helvetica,sans-serif !important; 
+    background-color: white;   
+    border: 1px solid silver;
+    position: absolute;
+    left: 0px;    
+    top: 0px;   
+    width: 150px;
+    height: 500px;   
+    z-index: 1000;
+    -moz-user-select: none;
+}
+
+.jpdlpalette .dragHandle{
+    background: url(../images/activities/handle-bg.gif) 2px;
+    line-height: 25px;
+    vertical-align: middle;
+}
+
+.jpdlpalette .dragHandle span{
+    padding:0 20px
+}
+
+.jpdlpalette li.paletteBar div{  
+    padding: 2px 0 2px 20px;
+    vertical-align: middle;
+    margin: 1px;
+    background: url(../images/activities/bar-bg.gif);
+}
+
+.jpdlpalette ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    line-height:20px;
+    overflow: auto;
+}
+
+.jpdlpalette ul li span{
+    color: black;
+    text-decoration: none;
+    padding: 0px 0 0px 20px;
+    background-repeat: no-repeat;
+    background-position: 2px center;
+    line-height: 20px;
+    cursor: pointer;
+    -moz-user-select: none;
+}
+
+.jpdlpalette ul li.paletteItem.select span{
+    background-image:url(../images/activities/select16.gif);
+}
+.jpdlpalette ul li.paletteItem.marquee span{
+    background-image:url(../images/activities/marquee16.gif);
+}
+.jpdlpalette ul li.paletteItem.transition-straight span{
+    background-image:url(../images/activities/16/flow_sequence.png);
+}
+.jpdlpalette ul li.paletteItem.transition-broken span{
+    background-image:url(../images/activities/16/transitions_multiple.gif);
+}
+.jpdlpalette ul li.paletteItem.state span{
+    background-image:url(../images/activities/16/task_empty.png);
+}
+.jpdlpalette ul li.paletteItem.start span{
+    background-image:url(../images/activities/16/start_event_empty.png);
+}
+.jpdlpalette ul li.paletteItem.end span{
+    background-image:url(../images/activities/16/end_event_terminate.png);
+}
+.jpdlpalette ul li.paletteItem.cancel span{
+    background-image:url(../images/activities/16/end_event_cancel.png);
+}
+.jpdlpalette ul li.paletteItem.error span{
+    background-image:url(../images/activities/16/end_event_error.png);
+}
+.jpdlpalette ul li.paletteItem.hql span{
+    background-image:url(../images/activities/16/task_empty.png);
+}
+.jpdlpalette ul li.paletteItem.sql span{
+    background-image:url(../images/activities/16/task_empty.png);
+}
+.jpdlpalette ul li.paletteItem.java span{
+    background-image:url(../images/activities/16/task_empty.png);
+}
+.jpdlpalette ul li.paletteItem.script span{
+    background-image:url(../images/activities/16/task_empty.png);
+}
+.jpdlpalette ul li.paletteItem.esb span{
+    background-image:url(../images/activities/16/task_empty.png);
+}
+.jpdlpalette ul li.paletteItem.task span{
+    background-image:url(../images/activities/16/task_empty.png);
+}
+.jpdlpalette ul li.paletteItem.decision span{
+    background-image:url(../images/activities/16/gateway_exclusive.png);
+}
+.jpdlpalette ul li.paletteItem.fork span{
+    background-image:url(../images/activities/16/gateway_parallel.png);
+}
+.jpdlpalette ul li.paletteItem.join span{
+    background-image:url(../images/activities/16/gateway_parallel.png);
+}
+.jpdlpalette ul li.paletteItem.subprocess span{
+    background-image:url(../images/activities/16/task_empty.png);
+}
+

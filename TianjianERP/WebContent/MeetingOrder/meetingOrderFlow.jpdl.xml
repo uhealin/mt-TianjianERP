@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="meetingOrderFlow" xmlns="http://jbpm.org/4.4/jpdl" key="meetingOrderFlow">
+   <start g="455,21,48,48" name="start1">
+      <transition to="发起人发起"/>
+   </start>
+   <task g="419,160,127,52" name="发起人发起">
+      <transition to="行政部会议管理员批准"/>
+   </task>
+   <task g="410,289,155,52" name="行政部会议管理员批准">
+     <assignment-handler class="com.matech.audit.service.meetingOrder.MeetingOrderAssign">
+		  <field name="role">
+	  	   	 <string value="204"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="end1"/>
+      <transition to="end1"/>
+   </task>
+   <end g="465,445,48,48" name="end1"/>
+</process>

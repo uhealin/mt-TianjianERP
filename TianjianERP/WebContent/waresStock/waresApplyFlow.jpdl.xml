@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="waresApplyFlow" xmlns="http://jbpm.org/4.4/jpdl" key="waresApplyFlow">
+   <start g="498,56,48,48" name="start1">
+      <transition to="申请人发起申请"/>
+   </start>
+   <end g="511,377,48,48" name="end1"/>
+   <task candidate-users="#{applyUserId}" g="457,157,143,62" name="申请人发起申请">
+      <transition to="行政部办公用品管理员审批"/>
+   </task>
+   <task g="445,267,174,52" name="行政部办公用品管理员审批">
+       <assignment-handler class="com.matech.audit.service.waresStock.WaresStockAssign">
+		  <field name="role">
+	  	   	 <string value="72,73"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="end1"/>
+   </task>
+</process>

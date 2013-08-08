@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process key="proclamationFlow" name="proclamationFlow" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="143,233,48,48" name="start1">
+      <transition to="撰稿人拟稿"/>
+   </start>
+   <end g="771,233,48,48" name="end1"/>
+   <task candidate-users="#{proposer}" g="259,231,92,52" name="撰稿人拟稿">
+      <transition to="总所还是分所"/>
+   </task>
+   <decision expr="#{placeName == '总所'?'总所':'分所'}" g="419,233,48,48" name="总所还是分所">
+      <transition g="-23,-18" name="分所" to="行政分发"/>
+      <transition g="-21,-12" name="总所" to="董办分发"/>
+   </decision>
+   <task from="treeList.jsp" g="541,175,92,52" name="董办分发">
+  	   <assignment-handler class="com.matech.audit.service.proclamation.ProclamationAssign">
+		  <field name="role">
+	  	   	 <string value="113"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="end1"/>
+   </task>
+   <task from="treeList.jsp" g="546,280,92,52" name="行政分发">
+    <assignment-handler class="com.matech.audit.service.proclamation.ProclamationAssign">
+	    <field name="role">
+	  	  	 <string value="146"/>
+	   	</field>
+   	 </assignment-handler>
+     <transition to="end1"/>
+   </task>
+</process>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process key="waresCancelFlow" name="waresCancelFlow" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="120,244,48,48" name="start1">
+      <transition to="发起人发起"/>
+   </start>
+   <task candidate-users="#{applyUserId}" g="227,239,129,52" name="发起人发起">
+      <transition to="判断由谁去审批"/>
+   </task>												 
+   <decision expr="#{judgeAuditUser == '普通人发起'?'普通人发起':'物品管理员发起'}" g="420,244,48,48" name="判断由谁去审批">
+      <transition g="-29,-19" name="普通人发起" to="物品管理员审批"/>
+      <transition g="-33,-7" name="物品管理员发起" to="行政部经理审批"/>
+   </decision>
+   <end g="823,246,48,48" name="end1"/>
+   <task g="595,175,114,52" name="物品管理员审批">
+    <assignment-handler class="com.matech.audit.service.waresStock.WaresStockAssign">
+		  <field name="role">
+	  	   	 <string value="73"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="end1"/>
+   </task>
+   <task g="594,307,113,52" name="行政部经理审批">
+   	   <assignment-handler class="com.matech.audit.service.waresStock.WaresStockAssign">
+		  <field name="role">
+	  	   	 <string value="72"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="end1"/>
+   </task>
+</process>

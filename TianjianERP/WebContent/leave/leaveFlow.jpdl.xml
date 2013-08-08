@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="leaveFlow" xmlns="http://jbpm.org/4.4/jpdl" key="leaveFlow">
+   <start g="402,-3,48,48" name="start1">
+      <transition to="发起人发起"/>
+   </start>
+   <task g="377,66,92,52" name="发起人发起">
+      <transition to="exclusive1"/>
+   </task>
+   <decision expr="#{departName =='行政部门'?'行政部门':'业务部门'}" g="402,170,48,48" name="exclusive1">
+      <transition g="-4,-20" name="业务部门" to="业务经理"/>
+      <transition g="-53,-17" name="行政部门" to="行政经理"/>
+   </decision>
+   <task g="189,227,92,52" name="行政经理">
+   	  <assignment-handler class="com.matech.audit.service.waresStock.WaresStockAssign">
+		  <field name="role">
+	  	   	 <string value="1"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="人力资源部备案"/>
+   </task>
+   <task g="608,224,92,52" name="业务经理">
+      <assignment-handler class="com.matech.audit.service.waresStock.WaresStockAssign">
+		  <field name="role">
+	  	   	 <string value="1"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="exclusive3"/>
+   </task>
+   <task g="176,326,120,52" name="人力资源部备案">
+      <assignment-handler class="com.matech.audit.service.waresStock.WaresStockAssign">
+		  <field name="role">
+	  	   	 <string value="1"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="exclusive2"/>
+   </task>
+   <decision expr="#{day>='3'?'大于3天':'小于3天'}" g="213,415,48,48" name="exclusive2">
+      <transition g="-38,-10" name="大于3天" to="执行合伙人批准"/>
+      <transition g="-12,-20" name="小于3天" to="end1"/>
+   </decision>
+   <decision expr="#{day>='3'?'大于3天':'小于3天'}" g="634,320,48,48" name="exclusive3">
+      <transition g="-53,-17" name="大于3天" to="主管合伙人批准"/>
+      <transition g="-47,-17" name="小于3天" to="end1"/>
+   </decision>
+   <end g="422,511,48,48" name="end1"/>
+   <task g="602,510,128,52" name="主管合伙人批准">
+      <assignment-handler class="com.matech.audit.service.waresStock.WaresStockAssign">
+		  <field name="role">
+	  	   	 <string value="1"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="end1"/>
+   </task>
+   <task g="180,504,118,52" name="执行合伙人批准">
+      <assignment-handler class="com.matech.audit.service.waresStock.WaresStockAssign">
+		  <field name="role">
+	  	   	 <string value="1"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="end1"/>
+   </task>
+</process>

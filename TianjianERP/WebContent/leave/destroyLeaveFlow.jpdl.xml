@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="destroyLeaveFlow" xmlns="http://jbpm.org/4.4/jpdl" key="destroyLeaveFlow">
+   <start name="start1" g="86,221,48,48">
+      <transition to="发起人发起"/>
+   </start>
+   <end name="end1" g="904,223,51,48"/>
+   <task name="发起人发起" g="234,217,92,52">
+      <transition to="exclusive1"/>
+   </task>
+   <decision name="exclusive1" g="420,221,48,48" expr="#{auditUser =='业务部门'?'业务部门':'行政部门'}">
+      <transition name="业务部门" to="部门经理审批" g="-44,-13"/>
+      <transition name="行政部门" to="人力资源部审批" g="-37,3"/>
+   </decision>
+   <task name="部门经理审批" g="608,106,122,52">
+   	  <assignment-handler class="com.matech.audit.service.waresStock.WaresStockAssign">
+		  <field name="role">
+	  	   	 <string value="1"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="end1"/>
+   </task>
+   <task name="人力资源部审批" g="615,277,122,52">
+   	  <assignment-handler class="com.matech.audit.service.waresStock.WaresStockAssign">
+		  <field name="role">
+	  	   	 <string value="1"/>
+	  	   </field>
+  	   </assignment-handler>
+      <transition to="end1"/>
+   </task>
+</process>
