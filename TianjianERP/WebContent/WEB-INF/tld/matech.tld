@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    
+  <description>Matech tag</description>
+  <display-name>Matech</display-name>
+  <tlib-version>1.1</tlib-version>
+  <short-name>Matech</short-name>
+  <uri>http://www.matech.cn/tag</uri>
+  <tag>
+    <description>
+        print the result on web page
+    </description>
+    <name>DataGridPrint</name>
+    <tag-class>com.matech.audit.tags.DataGridTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+        <description>
+			DataGrid main sql
+        </description>
+        <name>sql</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+        <description>
+			DataGrid 在页面上的id
+        </description>
+        <name>id</name>
+        <required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+			是否将tr的${}属性赋值
+        </description>
+        <name>trActionProperty</name>
+        <required>false</required>
+        <rtexprvalue>false</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+			tr的属性与事件
+        </description>
+        <name>trAction</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+			每页显示多少条记录
+        </description>
+        <name>pageSize</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+   
+    <attribute>
+        <description>
+			第几列是每列的值，从1开始
+        </description>
+        <name>whichFieldIsValue</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+			预排序
+        </description>
+        <name>preOrderBy</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+			预排序的方向
+        </description>
+        <name>direction</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+			连接数据库的单位编号
+        </description>
+        <name>dbDepartid</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+			第一列是否增加选择列
+        </description>
+        <name>inputType</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+        <description>
+			复杂表头
+        </description>
+        <name>tableHead</name>
+        <required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+  
+  <tag>
+  	<description>
+        print the result on web page by pp bean
+    </description>
+    <name>DataGridPrintByBean</name>
+    <tag-class>com.matech.audit.tags.DataGridBeanTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+    	<description>
+    		DataGridProperty 实例的名字
+    	</description>
+    	<name>name</name>
+    	<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+	<attribute>
+    	<description>
+    		DataGridProperty 输出数据的模式
+    	</description>
+    	<name>outputType</name>
+    	<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>    
+    
+    <attribute>
+    	<description>
+    		DataGridProperty 是否输出数据
+    	</description>
+    	<name>outputData</name>
+    	<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    
+    <attribute>
+    	<description>
+    		DataGridProperty 输出框架时带的信息
+    	</description>
+    	<name>message</name>
+    	<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    
+      <attribute>
+    	<description>
+    		是否使用老版的datagrid
+    	</description>
+    	<name>isOldGrid</name>
+    	<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+  	<description>
+        print the frame on web page by pp bean
+    </description>
+    <name>DataGridPrintFrameByBean</name>
+    <tag-class>com.matech.audit.tags.DataGridFrameTag</tag-class>
+    <body-content>JSP</body-content>
+    <attribute>
+    	<description>
+    		DataGridProperty 实例的名字
+    	</description>
+    	<name>name</name>
+    	<required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+    	<description>
+    		DataGridProperty 输出框架时带的信息
+    	</description>
+    	<name>message</name>
+    	<required>false</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+  	<description>
+        bind the page object for the request
+    </description>
+    <name>Bind</name>
+    <tag-class>com.matech.audit.tags.BindTag</tag-class>
+    <body-content>JSP</body-content>
+  </tag>
+</taglib>
