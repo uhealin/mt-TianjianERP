@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">  
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!--  Log4j Configuration                                                  -->
+<!--                                                                       -->
+<!-- ===================================================================== -->
+
+<!-- $Id: log4j.xml,v 1.1.2.4 2005/10/06 23:05:58 bill Exp $ -->
+
+<!--
+   | For more configuration infromation and examples see the Jakarta Log4j
+   | owebsite: http://jakarta.apache.org/log4j
+ -->
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+   
+  
+   <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+      <param name="Target" value="System.out"/>
+      <param name="Threshold" value="DEBUG"/>
+
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%5p %d{yyyy-MM-dd HH\:mm\:ss S} %c{1}\:%L - %m%n"/>
+      </layout>
+   </appender>
+
+   
+   <appender name="RollingFileAppender" class="org.apache.log4j.RollingFileAppender">
+   	  <param name="Threshold" value="ERROR"/>
+      <param name="File" value="../log/log4j.log"/>
+      <param name="Append" value="true" /> 
+      <param name="MaxFileSize" value="10000KB"/> 
+      <param name="MaxBackupIndex" value="10"/>	
+      
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%d{yyyy-MM-dd HH\:mm\:ss S} %5p %c{1}\:%L - %m%n"/>
+      </layout>
+	   <filter class="com.matech.framework.pub.log.filter.LevelFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="ERROR" />
+	  </filter>
+   </appender>
+   
+   <appender name="MtJDBCAppender" class="com.matech.framework.pub.log.appender.MtJDBCAppender">
+   	  <param name="Threshold" value="INFO"/>
+      <param name="bufferSize" value="1"/>
+      <layout class="org.apache.log4j.PatternLayout">  
+	  	 <param name="ConversionPattern" value="insert into t_log(UDate, UTime, loginid, UserName, memo, userid) values ('%d{yyyy-MM-dd}','%d{HH:mm:ss}','%X{loginId}','%X{userName}','%m','%X{userIp}')"/>
+	  </layout>
+	  
+	  <filter class="com.matech.framework.pub.log.filter.LevelFilter">
+		<param name="LevelMin" value="WARN" />
+		<param name="LevelMax" value="WARN" />
+	  </filter>
+	  
+   </appender>
+      
+   <category name="org.pentaho">
+      <priority value="DEBUG"/>
+   </category>
+   
+   <category name="com.healthmarketscience.jackcess">
+      <priority value="WARN"/>
+   </category>
+   
+   <category name="org.apache.commons.httpclient">
+       <priority value="WARN"/>
+   </category>
+   
+   <category name="org.mortbay">
+      <priority value="ERR"/>
+   </category>
+
+   <category name="java.net">
+      <priority value="NONE"/>
+   </category>
+   
+   <category name="org.apache.commons.logging.simplelog.log.org.apache.commons.httpclient">
+      <priority value="WARN"/>
+   </category>
+
+   <category name="org.apache.commons.logging.simplelog.log.org.apache.commons.httpclient.auth">
+      <priority value="WARN"/>
+   </category>
+   
+   <category name="com.matech.audit">
+      <priority value="INFO"/>
+	  <appender-ref ref="MtJDBCAppender" />
+      <appender-ref ref="RollingFileAppender"/>
+	  <appender-ref ref="CONSOLE"/>
+   </category>
+
+   <category name="com.matech.framework">
+      <priority value="INFO"/>
+	  <appender-ref ref="MtJDBCAppender" />
+      <appender-ref ref="RollingFileAppender"/>
+	  <appender-ref ref="CONSOLE"/>
+   </category>
+   
+</log4j:configuration>

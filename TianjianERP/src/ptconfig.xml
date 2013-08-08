@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="GBK"?>
+<platform>
+  <dao>
+    <dao10>com.audit.platform.system.dao.DAOAction</dao10>
+  </dao>
+  <command>
+    <cmd1000>com.audit.platform.system.command.CMDTest</cmd1000>
+  </command>
+   <print>
+    <printCount>10000</printCount>
+  </print>
+  <ENV>
+    <STARTPAGE>1</STARTPAGE>
+    <COUNTPAGE>10</COUNTPAGE>
+	<PWD>6813FBC03C26D5229B99B8F2505AA94D</PWD>
+	<UPDATE>
+	  <SITE>
+	    <NAME>E审通</NAME>
+	    <IP>http://www.matech.com.cn/Help/Update</IP>
+	  </SITE>
+	</UPDATE>
+	<DBPath></DBPath>
+	<KeyResult>1</KeyResult>
+	<version>0</version>
+	<APPTYPE>0</APPTYPE>
+	<clientDog>0</clientDog>
+	<AccProtect>0</AccProtect>
+	<uDog>0</uDog>
+	<unBind>0</unBind>
+	<emailSmtpHostName>smtp.163.com</emailSmtpHostName>
+	<emailUserName>matech.cn@163.com</emailUserName>
+	<emailPassword>B1181FF2E79DFE26434C7C80599E9BAB</emailPassword>
+	<title>5B8E222D2A01F334C9A855D022B27D1D5AA4276D1E085DC5237C1F1D06ABD8EC</title>
+	<logo>C576EECAB9EDCB04</logo>
+	<accAllowYear>B5F975B3357D97CF</accAllowYear>
+	<systemId>1</systemId>
+	
+	<!-- <useSelect>combox</useSelect> -->
+  </ENV>
+  <ConnectionPool>
+    <CONNECTTYPE>2</CONNECTTYPE>
+    <DATASOURCE>jndi/audit/datasource</DATASOURCE>
+    <DRIVER>com.mysql.jdbc.Driver</DRIVER>
+
+	<reportURL>matech.kmip.net</reportURL> 
+	<reportPort>5199</reportPort>
+   <!-- matech-sd2.eicp.net 172.19.7.121 172.19.7.123-->
+    <URL>jdbc:mysql://localhost:3306/asdb?characterEncoding=GBK</URL>
+	<USER>2FA0F387712EF59A08314D331B54A45B</USER>
+    <PASSWD>E0E7748C57D978B5</PASSWD>
+	<CHPID>F5E9D346A6120828453E254E64162E46</CHPID>
+	<CHOPIN>74AB6CDD0D5519DA74AB6CDD0D5519DA453E254E64162E46</CHOPIN>
+	<CHSPIN>74AB6CDD0D5519DA74AB6CDD0D5519DA453E254E64162E46</CHSPIN>
+	<KEYSEED>7A69CDFF9263C3CE6E4997C725926AA0</KEYSEED>
+    <DBNAME>asdb</DBNAME>
+    <DEBUGPRINT>1</DEBUGPRINT> 
+	<maximum-connection-count>50</maximum-connection-count>
+    <house-keeping-test-sql>select 'suc'</house-keeping-test-sql>
+	<maximum-active-time>900000</maximum-active-time>
+	<house-keeping-sleep-time>30000</house-keeping-sleep-time>
+	<prototype-count>4</prototype-count>
+	<verbose>true</verbose>
+	<statistics>10s,1m,1d</statistics>
+	<statistics-log-level>ERROR</statistics-log-level>
+	<trace>true</trace>
+  </ConnectionPool>
+</platform>

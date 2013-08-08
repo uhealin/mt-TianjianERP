@@ -1,0 +1,704 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!--  Error jsp mapping -->
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView">
+			<value>failure</value>
+		</property>
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">hasNoRight.jsp</prop>
+				<prop key="defaultErrorView">hasNoRight.jsp</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- international property support -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>messages</value>
+		</property>
+	</bean>
+
+	<!--Definition of View Resolver -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.JstlView</value>
+		</property>
+	</bean>
+
+	<!--Request Mapping -->
+	<bean id="paraMethodResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<property name="paramName">
+			<value>method</value>
+		</property>
+		<property name="defaultMethodName">
+			<value>list</value>
+		</property>
+	</bean>
+	
+	<!--Request Mapping -->
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="resum.do">ResumAction</prop>
+				<prop key="/login.do">LoginAction</prop>
+				<prop key="/user.do">UserAction</prop>
+				<prop key="/role.do">RoleAction</prop>
+				<prop key="/department.do">DepartmentAction</prop>
+				<prop key="/sysMenuManger.do">SysMenuMangerAction</prop>
+				<prop key="/info.do">InfoAction</prop>
+				<prop key="/tree.do">TreeAction</prop>
+				<prop key="/resume.do">ResumeAction</prop>
+				<!-- 声明 -->
+				<prop key="/declare.do">DeclareAction</prop>
+				<!-- 投资情况 -->
+				<prop key="/investManage.do">investManageAction</prop>
+				<!-- 系统 -->
+				<prop key="/system.do">SystemAction</prop>
+				<!-- 表单管理 -->
+				<prop key="/formDefine.do">FormDefineAction</prop>	
+				<!-- 列表维护 -->
+				<prop key="/formQueryConfig.do">FormQueryConfigAction</prop>
+				
+				<!-- 环境设置 -->
+				<prop key="/circumstance.do">CircumstanceAction</prop>
+				
+				<!-- DIC表维护 -->
+				<prop key="/kdic.do">kdicAction</prop>
+				
+				<!-- 规章制度 -->
+				<prop key="/regulations.do">RegulationsAction</prop>
+				
+				<!-- 问题库-->
+				<prop key="/question.do">QuestionAction</prop>
+				
+				<!-- 新闻 -->  
+				<prop key="/news.do">NewsAction</prop>
+				
+				<!-- 实习生登记 -->  
+				<prop key="/cadet.do">CadetAction</prop>
+				
+				<!-- 员工登记 -->  
+				<prop key="/employee.do">EmployeeAction</prop>
+				
+				<!-- 百度编辑 -->  
+				<prop key="/employeeedit.do">EmployeeeditAction</prop>
+				<!-- 百度编辑 -->  
+				<prop key="/employeeedit1.do">EmployeeeditAction1</prop>
+				
+				<!-- 会议室 -->
+				<prop key="/meetingRoom.do">MeetingRoomAction</prop>
+				
+				<!-- 会议 -->
+				<prop key="/meetingOrder.do">MeetingOrderAction</prop>
+				
+				<!-- 耗材登记 -->
+				<prop key="/meetingConsumable.do">MeetingConsumableAction</prop>
+				
+				
+				<!-- 企业资质 -->
+				<prop key="/enterpriseQualification.do">EnterpriseQualificationAction</prop>
+				
+				<!-- 公告打印 -->
+				<prop key="/placard.do">PlacardAction</prop>
+				
+				<!-- 公告管理 -->
+				<prop key="/proclamation.do">ProclamationAction</prop>
+				
+				<prop key="/common.do">CommonAction</prop>
+				
+				<prop key="/docpost.do">DocPostAction</prop>
+				<prop key="/docrec.do">DocRecAction</prop>
+				
+								
+				
+				<!-- 企业资质 -->
+				<prop key="/enterpriseQualification.do">enterpriseQualificationAction</prop>
+			
+			<!-- 体检登记管理 -->
+				<prop key="/appointment.do">AppointmentAction</prop>
+				<!-- 体检统计 -->
+				<prop key="/statistics.do">StatisticsAction</prop>
+			
+			  <prop key="/interiorEmail.do">InteriorEmailAction</prop>
+			  
+			  		<!-- 面试简历 -->
+				<prop key="/employment.do">EmploymentAction</prop>
+			  
+			  	<!-- oa 人事档案缴费管理 -->
+				<prop key="/personCapture.do">PersonCaptureAction</prop>
+
+				<!-- oa 员工培训情况管理 -->
+				<prop key="/learncircs.do">LearncircsAction</prop>
+
+				<!-- oa 员工保险情况管理 -->
+				<prop key="/insurancecircs.do">InsurancecircsAction</prop>
+
+				<!-- oa 员工奖惩记录管理 -->
+				<prop key="/encouragement.do">EncouragementAction</prop>
+
+				<!-- oa 人员基本资料管理 -->
+				<prop key="/staff.do">StaffAction</prop>
+
+				<!-- oa 人员专业资格登记 -->
+				<prop key="/specialitycompetence.do">specialityCompetenceAction</prop>
+
+				<!-- oa 工作记录登记 -->
+				<prop key="/worknote.do">worknoteAction</prop>
+
+				<!-- oa 工作岗位变动记录 -->
+				<prop key="/postchange.do">postchangeAction</prop>
+
+				<!-- oa 员工证件登记 -->
+				<prop key="/employeecertificate.do">employeecertificateAction</prop>
+
+				<!-- oa 人员劳动合同 -->
+				<prop key="/laborbargain.do">laborbargainAction</prop>
+
+				<!-- oa 家庭成员管理 -->
+				<prop key="/family.do">familyAction</prop>
+
+				<!-- oa险种类型 -->
+				<prop key="/insurancetype.do">InsuranceTypeAction</prop>
+
+              			<!-- 人事信息子集-->
+				<prop key="/subset.do">SubsetAction</prop>
+				
+				<prop key="/query2d.do">Query2dAction</prop>
+
+
+				<!-- 招投标项目 -->
+				<prop key="/bidProject.do">bidProjectAction</prop>
+				
+				<prop key="/analyse.do">AnalyseAction</prop>
+				
+				<!-- 投票 -->
+				<prop key="/option.do">OptionAction</prop>
+				
+				<prop key="/rank.do">RankAction</prop>
+				
+								<!-- 工资 -->
+				
+				<prop key="/rankWages.do">RankWagesAction</prop>
+				<prop key="/salary.do">SalaryAction</prop>
+				<prop key="/onlineUser.do">OnlineUserAction</prop>
+				
+				<prop key="/print.do">PrintAction</prop>
+				
+				
+				<!-- 培训班管理 -->
+				<prop key="education.do">EducationAction</prop>
+				<!-- 培训师资管理  -->
+				<prop key="teacher.do">TeacherAction</prop>
+				<!-- 学时管理 -->
+				<prop key="educationTime.do">EducationTimeAction</prop>
+				<!-- 注会年检 -->
+				<prop key="nianJian.do">NianJianAction</prop>		
+				<!-- 咨询 -->
+				<prop key="/content.do">ContentAction</prop>
+				<prop key="/club.do">ClubAction</prop>	
+				<prop key="/businessreport.do">BusinessReportAction</prop>	
+			</props>
+		</property>
+
+	</bean>
+
+<bean id="BusinessReportAction"
+  class="com.matech.audit.work.businessReport.BusinessReportAction"
+>
+<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+</bean>
+
+<bean id="ClubAction"
+		class="com.matech.audit.work.club.ClubAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+	<!---Action Definition-->
+	 <!-- 注会年检 -->
+    <bean id="NianJianAction" class="com.matech.audit.work.nianJian.NianJianAction">
+    	<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+    </bean>
+	
+	<bean id="RankAction"
+		class="com.matech.audit.work.rank.RankAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 网投管理 -->
+	<bean id="ResumAction"
+		class="com.matech.audit.work.user.ResumAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="DeclareAction"
+		class="com.matech.audit.work.declare.DeclareAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	<bean id="investManageAction"
+		class="com.matech.audit.work.investManage.InvestManageAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="ResumeAction"
+		class="com.matech.audit.work.hr.ResumeAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	<bean id="TreeAction"
+		class="com.matech.audit.work.hr.TreeAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="LoginAction"
+		class="com.matech.audit.work.login.LoginAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+	<!-- 部门管理 -->
+	<bean id="DepartmentAction"
+		class="com.matech.audit.work.department.DepartmentAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+	<!-- 系统菜单信息 -->
+	<bean id="SysMenuMangerAction"
+		class="com.matech.audit.work.sysMenuManger.SysMenuMangerAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+	<!-- 人员管理 -->
+	<bean id="UserAction" class="com.matech.audit.work.user.UserAction" >
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 角色设置 -->
+	<bean id="RoleAction" class="com.matech.audit.work.role.RoleAction" >
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 系统信息 -->
+	<bean id="InfoAction"
+		class="com.matech.audit.work.info.InfoAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="FormDefineAction" class="com.matech.audit.work.form.FormDefineAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	<!-- 系统 -->
+	<bean id="SystemAction" class="com.matech.audit.work.system.SystemAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="FormQueryConfigAction"
+		class="com.matech.audit.work.form.FormQueryConfigAction">
+		<property name="methodNameResolver">
+		<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- DIC表维护 -->
+	<bean id="kdicAction"
+		class="com.matech.audit.work.kdic.DicAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="CircumstanceAction"
+			class="com.matech.audit.work.circumstance.CircumstanceAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 规章制度-->
+	<bean id="RegulationsAction"
+		class="com.matech.audit.work.regulations.RegulationsAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="QuestionAction"
+		class="com.matech.audit.work.question.QuestionAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 新闻-->
+	<bean id="NewsAction"
+		class="com.matech.audit.work.news.NewsAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 实习生登记-->
+	<bean id="CadetAction"
+		class="com.matech.audit.work.cadet.CadetAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 员工登记-->
+	<bean id="EmployeeAction"
+		class="com.matech.audit.work.employee.EmployeeAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 百度编辑-->
+	<bean id="EmployeeeditAction"
+		class="com.matech.audit.work.employeeedit.EmployeeeditAciton">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 百度编辑-->
+	<bean id="EmployeeeditAction1"
+		class="com.matech.audit.work.employeeedit1.EmployeeeditAciton1">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="MeetingRoomAction"
+		class="com.matech.audit.work.meetingRoom.MeetingRoomAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="MeetingOrderAction"
+		class="com.matech.audit.work.meetingOrder.MeetingOrderAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="MeetingConsumableAction"
+		class="com.matech.audit.work.meetingConsumable.MeetingConsumableAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" /> 
+		</property>
+	</bean>
+	
+	<bean id="EnterpriseQualificationAction"
+		class="com.matech.audit.work.enterpriseQualification.EnterpriseQualificationAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 公告打印 -->
+	<bean id="PlacardAction"
+		class="com.matech.audit.work.placard.PlacardAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	
+	<bean id="ProclamationAction"
+		class="com.matech.audit.work.proclamation.ProclamationAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 公共action -->
+	<bean id="CommonAction" class="com.matech.audit.work.system.CommonAction" >
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="DocPostAction" class="com.matech.audit.work.doc.DocPostAction" >
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="DocRecAction" class="com.matech.audit.work.doc.DocRecAction" >
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	
+	
+	
+	<bean id="enterpriseQualificationAction"
+		class="com.matech.audit.work.enterpriseQualification.EnterpriseQualificationAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+		<!-- 体检登记管理 -->
+	<bean id="AppointmentAction" class="com.matech.audit.work.physicalExamination.AppointmentAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	<!-- 体检统计 -->
+	<bean id="StatisticsAction" class="com.matech.audit.work.physicalExamination.StatisticsAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+		<bean id="InteriorEmailAction" class="com.matech.audit.work.oa.interiorEmail.InteriorEmailAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="EmploymentAction"
+		class="com.matech.audit.work.employment.EmploymentAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>	
+	
+
+	
+				<!-- oa 人事档案缴费管理 -->
+	<bean id="PersonCaptureAction"
+		class="com.matech.audit.work.oa.personCapture.PersonCaptureAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+		<!-- oa 员工培训情况管理 -->
+	<bean id="LearncircsAction"
+		class="com.matech.audit.work.oa.learncircs.LearncircsAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+
+		<!-- oa 员工保险情况管理 -->
+	<bean id="InsurancecircsAction"
+		class="com.matech.audit.work.oa.insurancecircs.InsurancecircsAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+		<!-- oa 员工奖惩记录管理 -->
+	<bean id="EncouragementAction"
+		class="com.matech.audit.work.oa.encouragement.EncouragementAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+		<!-- oa 人员基本资料管理 -->
+	<bean id="StaffAction"
+		class="com.matech.audit.work.oa.staff.StaffAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+		<!-- oa 人员专业资格登记 -->
+	<bean id="specialityCompetenceAction"
+		class="com.matech.audit.work.oa.specialitycompetence.specialityCompetenceAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+		<!-- oa 工作记录登记 -->
+	<bean id="worknoteAction"
+		class="com.matech.audit.work.oa.worknote.worknoteAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+		<!-- oa 工作岗位变动记录 -->
+	<bean id="postchangeAction"
+		class="com.matech.audit.work.oa.postchange.postchangeAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+		<!-- oa 员工证件登记 -->
+	<bean id="employeecertificateAction"
+		class="com.matech.audit.work.oa.employeecertificate.employeecertificateAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+		<!-- oa 人员劳动合同 -->
+	<bean id="laborbargainAction"
+		class="com.matech.audit.work.oa.labor.LaborBargainAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+		<!-- oa 家庭成员管理 -->
+	<bean id="familyAction"
+		class="com.matech.audit.work.oa.family.FamilyAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+	<!-- oa 险种类型 -->
+	<bean id="InsuranceTypeAction"
+			class="com.matech.audit.work.oa.insurancetype.InsuranceTypeAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="SubsetAction"
+			class="com.matech.audit.work.hr.SubsetAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="Query2dAction"
+			class="com.matech.audit.work.analyse.Query2dAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+
+
+	<bean id="bidProjectAction"
+		class="com.matech.audit.work.bidProject.BidProjectAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="AnalyseAction"
+		class="com.matech.audit.work.analyse.AnalyseAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+		<bean id="MultiDbAction"
+		class="com.matech.framework.multidb.MysqlAction" />
+		
+	<bean id="OptionAction"
+			class="com.matech.audit.work.option.OptionAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+		
+		
+	
+	<bean id="RankWagesAction"
+			class="com.matech.audit.work.rankWages.RankWagesAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="SalaryAction"
+			class="com.matech.audit.work.salary.SalaryAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>				
+	
+	<bean id="OnlineUserAction"
+		class="com.matech.audit.work.system.OnlineUserAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="PrintAction"
+			class="com.matech.audit.work.print.PrintAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>		
+	
+	<!-- 培训班管理 -->
+	<bean id="EducationAction" class="com.matech.audit.work.education.EducationAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	<!-- 培训师资管理  -->
+	<bean id="TeacherAction" class="com.matech.audit.work.teacher.TeacherAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	<!-- 学时管理 -->
+	<bean id="EducationTimeAction" class="com.matech.audit.work.educationtime.EducationTimeAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<bean id="ContentAction"
+		class="com.matech.audit.work.content.ContentAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>	
+	
+</beans>

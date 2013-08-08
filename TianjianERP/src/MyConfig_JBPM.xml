@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"><!-- 数据源类采用JDBC数据源 -->
+		<property name="driverClassName">
+			<!-- 将数据库连接交给了proxool管理,使它的驱动 -->
+			<value>org.logicalcobwebs.proxool.ProxoolDriver</value>
+		</property>
+		<property name="url">
+			<!-- 数据库连接池的别名,与你的proxool.xml中的Alias必须一致 -->
+			<value>proxool.proxoolPool</value>
+		</property>
+		
+	</bean>
+
+	<bean id="hibernateProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<!-- 当你使用mysql的时候，jbpm使用的是org.hibernate.dialect.MySQLInnoDBDialect -->
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLInnoDBDialect
+				</prop>
+				<prop key="hibernate.connection.autoReconnect">true</prop> 
+        		<prop key="hibernate.connection.autoReconnectForPools">true</prop>
+        		<prop key="hibernate.connection.is-connection-validation-required">true</prop>
+        		<prop key="hibernate.release_mode">auto</prop> 
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.connection.release_mode">auto</prop>
+
+			</props>
+		</property>
+	</bean>
+
+	<!-- 集成hibernate配置 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties" ref="hibernateProperties" />
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:jbpm.repository.hbm.xml</value>
+				<value>classpath:jbpm.execution.hbm.xml</value>
+				<value>classpath:jbpm.history.hbm.xml</value>
+				<value>classpath:jbpm.task.hbm.xml</value>
+				<value>classpath:jbpm.identity.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 事务配置，必须 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- jbpm配置 -->
+	<bean id="springHelper"
+		class="org.jbpm.pvm.internal.processengine.SpringHelper" />
+	<bean id="processEngine" factory-bean="springHelper"
+		factory-method="createProcessEngine" />
+	<bean id="repositoryService" factory-bean="processEngine"
+		factory-method="getRepositoryService" />
+	<bean id="executionService" factory-bean="processEngine"
+		factory-method="getExecutionService" />
+	<bean id="taskService" factory-bean="processEngine"
+		factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine"
+		factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine"
+		factory-method="getManagementService" />
+
+	<bean id="jbpmTemplate"
+		class="com.matech.audit.service.process.JbpmTemplate">
+		<property name="processEngine" ref="processEngine"></property>
+		<property name="repositoryService" ref="repositoryService"></property>
+		<property name="executionService" ref="executionService"></property>
+		<property name="taskService" ref="taskService"></property>
+		<property name="historyService" ref="historyService"></property>
+		<property name="managementService" ref="managementService"></property>
+	</bean>
+
+	<bean id="jbpmServicce" class="com.matech.audit.service.process.JbpmServicce">
+		<property name="jbpmTemplate">
+			<ref bean="jbpmTemplate" />
+		</property>
+	</bean>
+	
+	<bean id="urlMapping_JBPM" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<!-- 招聘 -->
+				<prop key="/job.do">JobAction</prop>
+				<!-- 请假-->
+				<prop key="/leave.do">LeaveAction</prop>
+				
+					<!-- 员工登记 -->  
+				<prop key="/employee.do">EmployeeAction</prop>
+				
+				<!-- 通用流程处理 -->
+				<prop key="/process.do">ProcessAction</prop>
+			
+				<!-- 物品库存管理 -->
+				<prop key="/waresStock.do">WaresStockAction</prop>
+
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 请假流程 -->
+	<bean id="LeaveAction"
+		class="com.matech.audit.work.leave.LeaveAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+		<property name="jbpmTemplate">
+				<ref bean="jbpmTemplate" />
+		</property>
+	</bean>
+	<!-- 通用流程处理-->
+	<bean id="ProcessAction"
+		class="com.matech.audit.work.process.ProcessAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+	</bean>
+	
+	<!-- 员工入职 -->
+	<bean id="EmployeeAction"
+		class="com.matech.audit.work.employee.EmployeeAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+		<property name="jbpmTemplate">
+				<ref bean="jbpmTemplate" />
+		</property>
+	</bean>
+
+	<!-- 简历库、入职-->
+	<bean id="JobAction"
+		class="com.matech.audit.work.user.JobAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+		<property name="jbpmTemplate">
+				<ref bean="jbpmTemplate" />
+		</property>
+	</bean>
+	
+	<bean id="WaresStockAction"
+		class="com.matech.audit.work.waresStock.WaresStockAction">
+		<property name="methodNameResolver">
+			<ref bean="paraMethodResolver" />
+		</property>
+		<property name="jbpmTemplate">
+				<ref bean="jbpmTemplate" />
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>   
+<something-else-entirely>   
+<proxool>   
+<alias>proxoolPool</alias>   
+<!-- matech-sd2.eicp.net  192.168.43.254 172.19.7.121 172.19.7.123-->
+<driver-url>jdbc:mysql://localhost:3306/asdb?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8</driver-url>   
+<driver-class>com.mysql.jdbc.Driver</driver-class>   
+<driver-properties>   
+<property name="user" value="xoops_root"/>   
+<property name="password" value="654321"/>
+<property name="autoReconnect" value="true" />
+</driver-properties>   
+<house-keeping-sleep-time>90000</house-keeping-sleep-time>   
+<maximum-new-connections>20</maximum-new-connections>   
+<prototype-count>5</prototype-count>   
+<maximum-connection-count>100</maximum-connection-count>   
+<minimum-connection-count>10</minimum-connection-count>
+<test-before-use>true</test-before-use> 
+<house-keeping-test-sql>select 'suc'</house-keeping-test-sql>
+</proxool>    
+</something-else-entirely>   
