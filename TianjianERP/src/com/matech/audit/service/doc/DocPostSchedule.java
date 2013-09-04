@@ -95,12 +95,19 @@ public class DocPostSchedule implements Job {
 			ndate=smdf.parse(StringUtil.getCurDate());
 			if(StringUtil.isIn(docPostVO.getNode_code(),new String[]{"hq","xm"})){
 				try{
-					Date d=smdf.parse(docPostVO.getSignissue_date());
+					Date d=smdf.parse(docPostVO.getHq_date());
 					if(ndate.after(d)){
+						if(!StringUtil.isBlank(docPostVO.getSignissuer_ids())){
 						docPostVO.setNode_code(Node.qf.name());
-						String msg= MessageFormat.format("{0} 超过签发日期，直接进入签发环节",StringUtil.getCurDateTime());
+						String msg= MessageFormat.format("{0} 超过会签日期，直接进入签发环节",StringUtil.getCurDateTime());
 						docPostVO.setNode_remark(msg);
 						eff++;			
+						}else if(!StringUtil.isBlank(docPostVO.getSignissuer_ids())){
+							docPostVO.setNode_code(Node.hy.name());
+							String msg= MessageFormat.format("{0} 超过会签日期，没有签发人，直接进入核阅环节",StringUtil.getCurDateTime());
+							docPostVO.setNode_remark(msg);
+							eff++;			
+						}
 					}
 				}catch(Exception e){System.out.println("签发过期检查出错:"+e.getMessage());}
 			}

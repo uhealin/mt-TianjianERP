@@ -62,8 +62,24 @@ public class DocPostVO {
 	 protected String cancel_reason;
 	 protected String beaccount_addr;
 	 protected String pccpa_docid;
+	 protected String viewed_userid;
+	  protected String hq_date;
      
-	 public String getUuid(){ return this.uuid; }
+	  
+	  
+	 public String getViewed_userid() {
+		return viewed_userid;
+	}
+	public void setViewed_userid(String viewed_userid) {
+		this.viewed_userid = viewed_userid;
+	}
+	public String getHq_date() {
+		return hq_date;
+	}
+	public void setHq_date(String hq_date) {
+		this.hq_date = hq_date;
+	}
+	public String getUuid(){ return this.uuid; }
 	 public void setUuid(String uuid){ this.uuid=uuid; }
 	 public String getPost_addr_names(){ return this.post_addr_names; }
 	 public void setPost_addr_names(String post_addr_names){ this.post_addr_names=post_addr_names; }
